@@ -7,11 +7,11 @@ set $mod Mod4
 #font pango:monospace 8
 
 
-font pango:DejaVu Sans Mono 8
+font pango:Fantasque Sans Mono 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier Mod4
 
 # start a terminal
 bindsym $mod+Return exec terminator
@@ -20,8 +20,9 @@ bindsym $mod+Return exec terminator
 bindsym $mod+q kill
 
 # start rofi (a program launcher)
-bindsym XF86Search exec rofi -show run -columns 1
-bindsym $mod+d exec rofi -show run -columns 1
+bindsym XF86Search exec rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+bindsym $mod+d exec rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -53,15 +54,15 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+w layout stacking
-bindsym $mod+e layout tabbed
-bindsym $mod+s layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -69,40 +70,43 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-set $workspace1 "1> &#xf269;"
-set $workspace2 "2>"
-set $workspace3 "3>"
-set $workspace4 "4>"
-set $workspace5 "5>"
-set $workspace6 "6>"
-set $workspace7 "7>"
-set $workspace8 "8>"
-set $workspace9 "9>"
-set $workspace10 "10>"
+# put firefox on hdmi-0 by default
+workspace $ws1 output HDMI-0
+
+set $ws1 "1> &#xf269;"
+set $ws2 "2>"
+set $ws3 "3> &#xf001;"
+set $ws4 "4> &#xf019;"
+set $ws5 "5>"
+set $ws6 "6>"
+set $ws7 "7>"
+set $ws8 "8>"
+set $ws9 "9>"
+set $ws10 "10>"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -146,6 +150,33 @@ bar {
 
 ##
 
+set_from_resource $darkred     color1  #000000
+set_from_resource $red         color9  #000000
+set_from_resource $darkgreen   color2  #000000
+set_from_resource $green       color10 #000000
+set_from_resource $darkyellow  color3  #000000
+set_from_resource $yellow      color11 #000000
+set_from_resource $darkblue    color4  #000000
+set_from_resource $blue        color12 #000000
+set_from_resource $darkmagenta color5  #000000
+set_from_resource $magenta     color13 #000000
+set_from_resource $darkcyan    color6  #000000
+set_from_resource $cyan        color14 #000000
+set_from_resource $darkwhite   color7  #000000
+set_from_resource $white       color15 #000000
+set $black       #282828
+set $darkblack   #1d2021
+set $transparent #00000000
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -155,20 +186,40 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
-
 # Media player controls
 bindsym XF86AudioPlay exec playerctl pauseplay
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-#screenshots to ~/Pictures/screenshots
+# screenshots to ~/Pictures/screenshots
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/'
+
 # Clementine with music button 
 bindsym XF86Tools exec clementine
 
+#poweroff and reboot with shift
+bindsym $mod+XF86Sleep exec poweroff
+bindsym $mod+Shift+XF86Sleep exec reboot
+
+# turn on hdmi
 exec ~/.screenlayout/hdmi.sh
+
+# background
 exec_always feh --bg-scale /home/jess/Pictures/Wallpapers/Wallpaper/wallpaper.jpg
 
-assign [class="Firefox"] $workspace1
+# turn off screenblanking
+exec xset -dpms s off s noblank s 0 0 s noexpose
+
+assign [class="Firefox"] $ws1
+assign [class="Clementine"] $ws3
+assign [class="Deluge"] $ws4 
+
+focus_follows_mouse yes
+hide_edge_borders both
+
+# No borders
+new_window pixel 0
+
+for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enabled
+for_window [class="Pavucontrol"] floating enabled
+for_window [class="Pavucontrol"] floating_minimum_size 75 x 50
